@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Store Front</title>
+    <title>StoreFront</title>
 
-    <script src="scripts/jquery-3.3.1.min.js" > </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="scripts/product.js" > </script>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <style type="text/css">
+
+    p {font-family: Georgia, "Times New Roman", Times, serif;
+      text-align: center;
+      }
+
+    h1 {
+      font-size: 2.5em;
+      text-align: center;
+    }
+
+    p.bold {
+      font-weight: bolder;
+    }
+
+    p.border {
+      border-radius: 10px;
+      border: 6px double black;
+      padding: .2em;
+    }
+
+
+    .merch{
+    text-align: center;
+    }
+
+    .orderconf{
+    text-align: center;
+
+    }
+
+    .info{
+    text-align: center;
+
+    }
+
+    </style>
 
   </head>
   <body>
@@ -21,14 +57,16 @@
   Products
   </p>
   <br>
-  <table class="border" id="product_container" text-align: center>
-    <col width="130">
-  <script type="text/javascript">
-    var productList = new ProductList();
-    var index;
-      $("#product_container").append(productList.getProductTable());
-  </script>
-  </table>
+  <p class="border">
+  Pepsi   Qty:
+  <input type="number" name="Pepsi" size="3" maxlength="4"><br><br>
+  Coke    Qty:
+  <input type="number" name="Coke" size="3" maxlength="4"><br><br>
+  Mountain Dew   Qty:
+  <input type="number" name="Mountain_Dew" size="3" maxlength="4"><br><br>
+
+  Enter the quantity you wish to purchase and proceed to checkout.
+  </p>
 
   <br><br><br><br>
   <button id="checkout">Checkout</button>
@@ -42,9 +80,8 @@
   You ordered <output name="Pepsi"></output> amount of Pepsi.<br>
   You ordered <output name="Coke"></output> amount of Coke.<br>
   You ordered <output name="Mountain_Dew"> amount of Mountain Dew.<br>
-  If this information is correct please proceed.
-</p>
-  <br><br><br><br>
+  If this infomration is correct please proceed.
+  <br><br>
   <button id="proceed">Proceed to Payment</button>
   </div>
 
@@ -62,7 +99,6 @@
   Credit Card Number:
   <input type="text" name="CCNum" size="20" maxlength="30"><br>
   After reviewing your order please confirm purchase.
-  </p>
   <br><br>
   <button id="Purchase">Purchase</button>
   </div>
@@ -70,19 +106,14 @@
 
 
   <script>
-
-  $("#orderconf").hide();
-  $("#info").hide();
-  
-  $( "button#checkout" ).on("click" function() {
-    $("div").hide();
+  $("div.orderconf").hide();
+  $("div.info").hide();
+  $("button#Checkout").on("click", function() {
+    $("div.merch").hide();
     $("div.orderconf").FadeIn();
-  });
-  $( "button#proceed").on("click" function(){
-    $("div").hide();
+    }
+  $("button#proceed").on("click", function(){
     $("div.info").FadeIn();
-  });
-
-
+  }
   </body>
 </html>
