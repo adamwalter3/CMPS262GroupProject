@@ -4,9 +4,8 @@
     <title>Store Front</title>
 
     <script src="scripts/jquery-3.3.1.min.js" > </script>
-    <link href="jquery-ui.css" rel="stylesheet">
-    <script src="external/jquery/jquery.js"></script>
-    <script src="jquery-ui.js"></script>
+    <link href="jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet">
+    <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="scripts/product.js" > </script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -25,7 +24,7 @@
   <br>
   <br>
 
-  <div class="merch">
+  <div class="merch" id="product_grid">
   <p class="bold">
   Products
   </p>
@@ -43,7 +42,7 @@
   <button id="checkout">Checkout</button>
   </div>
 
-  <div class="orderconf">
+  <div class="orderconf" id="order_conf">
   <p class="bold">
   Order Confirmation
   </p>
@@ -57,7 +56,7 @@
   <button id="proceed">Proceed to Payment</button>
   </div>
 
-  <div class="info">
+  <div class="info" id="customer_info">
   <p class="bold">
   Payment Information Submission
   </p>
@@ -82,21 +81,26 @@
 
 
   <script>
-  $("#orderconf").hide();
-  $("#info").hide();
-  
-  $( "#checkout" ).on("click" function() {
-    $("div").hide();
-    $("div.orderconf").FadeIn();
+  $(document).ready(function() {
+    $("#checkout").click(function() {
+      var valid = false;
+      var inputs = $(".product_item");
+      for(var i = 0; i < inputs.length; i++) {
+        if ($.isNumeric($(inputs[i]).val())) {
+          if ($(inputs[i]).val() > 0) {
+            valid = true;
+          }
+        }
+      }
+
+      if (!valid) {
+            alert("You must enter a valid amount of a product to continue.")
+      } else {
+        $( "#product_grid" ).hide();
+        $( "#order_conf" ).show();
+      }
+    }); 
   });
-  $( "#proceed").on("click" function(){
-    $("div").hide();
-    $("div.info").FadeIn();
-  });
-  $( "#colorchange" ).on("click" function() {
-    d3.select("body").transition()
-      .style("background-color", "black");
-    d3.selectAll("div").style("color", "white");
-  })
+  </script>
   </body>
 </html>

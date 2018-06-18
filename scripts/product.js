@@ -5,7 +5,7 @@ function Product(productName, unitPrice, imageName) {
   this.getProductView = function() {
     var output = "<td width='200'>" + this.productName + "<br />"
     + "<img hieght='75' width='75' src='" + this.imageName + "' />" + "<br />"
-    + "<input id='" + this.productName + "' type='number' />" 
+    + "<input class='product_item' id='" + this.productName + "' type='number' />" 
     + "</td>"
     return output;
   };

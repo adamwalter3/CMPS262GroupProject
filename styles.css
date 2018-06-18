@@ -23,6 +23,7 @@
 
     .info {
         text-align: center;
+        display: none;
     }
 
 
@@ -35,7 +36,12 @@
     }
 
     .orderconf { 
+        display: none;
         text-align: center;
+    }
+
+    .colorchange {
+      display: none;
     }
 
     </style>
