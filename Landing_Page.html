@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>StoreFront</title>
+    <title>Store Front</title>
 
     <script src="scripts/jquery-3.3.1.min.js" > </script>
+    <link href="jquery-ui.css" rel="stylesheet">
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.js"></script>
     <script src="scripts/product.js" > </script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+
+  <script>
+    $( function() {
+      $( document ).tooltip();
+    } );
+  </script>
 
   </head>
   <body>
@@ -20,7 +30,7 @@
   Products
   </p>
   <br>
-  <table class="border" id="product_container">
+  <table class="border" id="product_container" text-align: center>
     <col width="130">
   <script type="text/javascript">
     var productList = new ProductList();
@@ -33,7 +43,7 @@
   <button id="checkout">Checkout</button>
   </div>
 
-  <div class="orderconf" visibility = >
+  <div class="orderconf">
   <p class="bold">
   Order Confirmation
   </p>
@@ -41,8 +51,9 @@
   You ordered <output name="Pepsi"></output> amount of Pepsi.<br>
   You ordered <output name="Coke"></output> amount of Coke.<br>
   You ordered <output name="Mountain_Dew"> amount of Mountain Dew.<br>
-  If this infomration is correct please proceed.
-  <br><br>
+  If this information is correct please proceed.
+</p>
+  <br><br><br><br>
   <button id="proceed">Proceed to Payment</button>
   </div>
 
@@ -52,33 +63,40 @@
   </p>
   <p class="border">
   First Name:
-  <input type="text" name="First_Name" size="10" maxlength="25"><br>
+  <input type="text" name="First_Name" size="10" maxlength="25" title="Your First Name Here"><br>
   Last Name:
-  <input type="text" name="Last_Name" size="10" maxlength="25"><br>
+  <input type="text" name="Last_Name" size="10" maxlength="25" title="Your Last Name Here"><br>
   Address:
-  <input type="text" name="Address" size="30" maxlength="30"><br>
+  <input type="text" name="Address" size="30" maxlength="30" title="Your Address Here"><br>
   Credit Card Number:
-  <input type="text" name="CCNum" size="20" maxlength="30"><br>
+  <input type="text" name="CCNum" size="20" maxlength="30" title="Your Credit Card Number Here"><br>
   After reviewing your order please confirm purchase.
+  </p>
   <br><br>
   <button id="Purchase">Purchase</button>
   </div>
 
+  <div class="colorchange">
+    <button id="colorchange">Change Background</button>
+  </div>
 
 
   <script>
-  $(function(){ //on page load
-    $("#orderconf").hide();
-    $("#info").hide();
-  });
-
-  $( "#checkout" ).click(function() {
-    $("div.merch").hide();
-    $("div.orderconf").FadeIn();
-    $( this ).slideUp();
-  });
-   
-  </script>
+  $("#orderconf").hide();
+  $("#info").hide();
   
+  $( "#checkout" ).on("click" function() {
+    $("div").hide();
+    $("div.orderconf").FadeIn();
+  });
+  $( "#proceed").on("click" function(){
+    $("div").hide();
+    $("div.info").FadeIn();
+  });
+  $( "#colorchange" ).on("click" function() {
+    d3.select("body").transition()
+      .style("background-color", "black");
+    d3.selectAll("div").style("color", "white");
+  })
   </body>
 </html>
