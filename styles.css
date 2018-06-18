@@ -13,7 +13,7 @@
       font-weight: bolder;
     }
 
-    p.border {
+    table.border {
       border-radius: 10px;
       border: 6px double black;
       padding: .2em;
