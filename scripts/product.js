@@ -2,9 +2,11 @@ function Product(productName, unitPrice, imageName) {
   this.productName = productName;
   this.unitPrice = unitPrice;
   this.imageName = imageName;
+  this.purchaseAmount = 
   this.getProductView = function() {
     var output = "<td width='200'>" + this.productName + "<br />"
-    + "<img hieght='75' width='75' src='" + this.imageName + "' />" + "<br />"
+    + "<img hieght='100' width='80' src='" + this.imageName + "' />" + "<br />"
+    + "$" + this.unitPrice + "<br />"
     + "<input class='product_item' id='" + this.productName + "' type='number' />" 
     + "</td>"
     return output;
@@ -29,4 +31,38 @@ function ProductList() {
     output = output + "</tr>"
     return output;
   };
+
+  this.purcahseAmountValid = function() {
+    var valid = false;
+    for(var i = 0; i < this.allProducts.length; i++) {
+        if ($.isNumeric(this.allProducts[i].purchaseAmount)) {
+          if (this.allProducts[i].purchaseAmount > 0) {
+            valid = true;
+          }
+        }
+    }
+
+    return valid;
+  };
+
+  this.getSubtotalText = function() {
+    var text = "";
+    var total = 0;
+    for(var i = 0; i < this.allProducts.length; i++) {
+        if ($.isNumeric(this.allProducts[i].purchaseAmount)) {
+          if (this.allProducts[i].purchaseAmount > 0) {
+            var subtotal = this.allProducts[i].purchaseAmount * this.allProducts[i].unitPrice;
+            total = total + subtotal;
+            text = text + this.allProducts[i].purchaseAmount + " Units " 
+            + this.allProducts[i].productName + " "
+            + " Subtotal: $" + subtotal.toFixed(2) + " <br />";
+          }
+        }
+    }
+
+    text = text + "$Total: " + total.toFixed(2);
+
+    return text;
+  };
+
 };

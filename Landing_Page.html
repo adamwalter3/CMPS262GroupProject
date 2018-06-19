@@ -46,14 +46,11 @@
   <p class="bold">
   Order Confirmation
   </p>
-  <p class="border">
-  You ordered <output name="Pepsi"></output> amount of Pepsi.<br>
-  You ordered <output name="Coke"></output> amount of Coke.<br>
-  You ordered <output name="Mountain_Dew"> amount of Mountain Dew.<br>
-  If this information is correct please proceed.
+  <p class="border" id="order_conf_p">
 </p>
   <br><br><br><br>
-  <button id="proceed">Proceed to Payment</button>
+    <button id="back" class="button_list">Back</button> 
+    <button id="proceed">Proceed to Payment</button>
   </div>
 
   <div class="info" id="customer_info">
@@ -61,14 +58,15 @@
   Payment Information Submission
   </p>
   <p class="border">
-  First Name:
-  <input type="text" name="First_Name" size="10" maxlength="25" title="Your First Name Here"><br>
-  Last Name:
-  <input type="text" name="Last_Name" size="10" maxlength="25" title="Your Last Name Here"><br>
-  Address:
-  <input type="text" name="Address" size="30" maxlength="30" title="Your Address Here"><br>
-  Credit Card Number:
-  <input type="text" name="CCNum" size="20" maxlength="30" title="Your Credit Card Number Here"><br>
+    <table>
+  <tr><td width="200px" td align="right">First Name:</td>
+  <td width="200px"><input type="text" name="First_Name" size="30" maxlength="25" title="Your First Name Here"></td></tr>
+  <tr><td align="right">Last Name:</td>
+  <td><input type="text" name="Last_Name" size="30" maxlength="25" title="Your Last Name Here"></td></tr>
+  <tr><td align="right">Address:</td>
+  <td><input type="text" name="Address" size="30" maxlength="30" title="Your Address Here"></td></tr>
+  <tr><td align="right">Credit Card Number:</td>
+  <td><input type="text" name="CCNum" size="30" maxlength="30" title="Your Credit Card Number Here"></td></tr></table>
   After reviewing your order please confirm purchase.
   </p>
   <br><br>
@@ -79,28 +77,53 @@
     <button id="colorchange">Change Background</button>
   </div>
 
+  <div class="order_confirmed" id="order_confirmed">
+    Your order has been confirmed.
+  </div>
+
 
   <script>
   $(document).ready(function() {
+    //Checkout Clcicked
     $("#checkout").click(function() {
+
       var valid = false;
       var inputs = $(".product_item");
       for(var i = 0; i < inputs.length; i++) {
         if ($.isNumeric($(inputs[i]).val())) {
           if ($(inputs[i]).val() > 0) {
-            valid = true;
+            productList.allProducts[i].purchaseAmount = $(inputs[i]).val();
+          } else {
+            productList.allProducts[i].purchaseAmount = 0;
           }
         }
       }
 
-      if (!valid) {
+      if (!productList.purcahseAmountValid()) {
             alert("You must enter a valid amount of a product to continue.")
       } else {
         $( "#product_grid" ).hide();
         $( "#order_conf" ).show();
+        $("#order_conf_p").html(productList.getSubtotalText());
       }
+
     }); 
+
+    $("#back").click(function() {
+        $( "#product_grid" ).show();
+        $( "#order_conf" ).hide();
+    });
+
+    $("#proceed").click(function() {
+        $( "#customer_info" ).show();
+        $( "#order_conf" ).hide();
+    }); 
+    $("#Purchase").click(function() {
+        $( "#customer_info" ).hide();
+        $( "#order_confirmed" ).show();
+    });
   });
+
   </script>
   </body>
 </html>

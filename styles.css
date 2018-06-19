@@ -26,6 +26,10 @@
         display: none;
     }
 
+    .order_confirmed {
+      display: none;
+    }
+
 
     .merch {
         text-align: center;
