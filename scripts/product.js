@@ -18,6 +18,7 @@ function ProductList() {
   var product2 = new Product("Diet Pepsi", 1.12, "img/diet_pepsi.jpeg");
   var product3 = new Product("Mountain Dew", 1.13, "img/mountain_dew.jpeg");
   this.allProducts = [product1, product2, product3];
+  this.total = 0;
   this.getProductTable = function() {
     var output = "<tr>";
     for (index = 0; index < productList.allProducts.length; ++index) {
@@ -47,12 +48,12 @@ function ProductList() {
 
   this.getSubtotalText = function() {
     var text = "";
-    var total = 0;
+    this.total = 0;
     for(var i = 0; i < this.allProducts.length; i++) {
         if ($.isNumeric(this.allProducts[i].purchaseAmount)) {
           if (this.allProducts[i].purchaseAmount > 0) {
             var subtotal = this.allProducts[i].purchaseAmount * this.allProducts[i].unitPrice;
-            total = total + subtotal;
+            this.total = this.total + subtotal;
             text = text + this.allProducts[i].purchaseAmount + " Units " 
             + this.allProducts[i].productName + " "
             + " Subtotal: $" + subtotal.toFixed(2) + " <br />";

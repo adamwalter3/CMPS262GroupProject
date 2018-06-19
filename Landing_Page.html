@@ -3,11 +3,16 @@
   <head>
     <title>Store Front</title>
 
+    <!-- Jquery -->
     <script src="scripts/jquery-3.3.1.min.js" > </script>
-    <link href="jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet">
-    <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-    <script src="scripts/product.js" > </script>
+    <script src="scripts/product.js" />
+    <!-- Jquery UI -->
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js" > </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- D3 -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- Style -->
     <link rel="stylesheet" href="styles.css">
 
   <script>
@@ -34,7 +39,7 @@
   <script type="text/javascript">
     var productList = new ProductList();
     var index;
-      $("#product_container").append(productList.getProductTable());
+    $("#product_container").append(productList.getProductTable());
   </script>
   </table>
 
@@ -84,7 +89,8 @@
 
   <script>
   $(document).ready(function() {
-    //Checkout Clcicked
+    $( "#Pepsi" ).spinner();
+    
     $("#checkout").click(function() {
 
       var valid = false;
